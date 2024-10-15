@@ -130,33 +130,31 @@ export default function ChatInterface() {
         currentModel={model as any}
         currentSystemInstructions={systemInstructions}
       />
-      {messages.length === 0 ? (
-        <HomeComponent onMessageSelect={handleSendMessage} />
-      ) : (
-        <div ref={messageListRef} className="overflow-y-auto h-screen">
-          <MessageList messages={messages} isLoading={false} />
-          {!!graphInterrupted && !!threadState && !!threadId ? (
-            <div className="flex items-center justify-start w-2/3 mx-auto">
-              <GraphInterrupt
-                setAllowNullMessage={setAllowNullMessage}
-                threadId={threadId}
-                state={threadState}
-              />
-            </div>
-          ) : null}
-          {allowNullMessage && (
-            <div className="flex flex-col w-2/3 mx-auto overflow-y-scroll pb-[100px]">
-              <button
-                onClick={async () => handleSendMessage(null)}
-                disabled={isLoading}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2 max-w-[400px] mx-auto"
-              >
-                Continue
-              </button>
-            </div>
-          )}
-        </div>
-      )}
+
+      <div ref={messageListRef} className="overflow-y-auto h-screen">
+        <MessageList messages={messages} isLoading={false} />
+        {!!graphInterrupted && !!threadState && !!threadId ? (
+          <div className="flex items-center justify-start w-2/3 mx-auto">
+            <GraphInterrupt
+              setAllowNullMessage={setAllowNullMessage}
+              threadId={threadId}
+              state={threadState}
+            />
+          </div>
+        ) : null}
+        {allowNullMessage && (
+          <div className="flex flex-col w-2/3 mx-auto overflow-y-scroll pb-[100px]">
+            <button
+              onClick={async () => handleSendMessage(null)}
+              disabled={isLoading}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2 max-w-[400px] mx-auto"
+            >
+              Continue
+            </button>
+          </div>
+        )}
+      </div>
+
       <InputArea
         disabled={!!graphInterrupted && !!threadState && !!threadId}
         onSendMessage={handleSendMessage}
