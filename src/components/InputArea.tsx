@@ -26,7 +26,7 @@ export default function InputArea({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className=" h-full w-full  rounded-[30px] px-10 focus:outline-none bg-[#2f2f2f] placeholder-white text-white"
-          placeholder="Message StreamChat"
+          placeholder="Sou seu assistente virtual, digite algo..."
         />
         <button
           disabled={disabled}
